@@ -34,11 +34,11 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     """List all available api routes."""
-    return (f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/precipitation">Precipitation</a><br></th></  table>'
-            f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/stations">Stations</a><br></th></table>'
-            f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/tobs">Temperature Observations</a><br></th></table>'
-            f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/<start>">Start</a><br></th></table>'
-            f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/<start>/<end>">Start and End</a><br></th></table>')
+    return (f'/api/v1.0/precipitation <br>'
+            f'/api/v1.0/stations<br>'
+            f'/api/v1.0/tobs<br>'
+            f'api/v1.0/&lt;start&gt;<br>'
+            f'/api/v1.0/&lt;start&gt;/&lt;end&gt;<br>')
 
 
 # Precipitation
@@ -79,7 +79,7 @@ def stations():
 # Tobs
 @app.route("/api/v1.0/tobs")
 def tobs():
-    # Create our session (link) from Python to the DB
+    # Create session from Python to DB
     session = Session(engine)
     # Query most active station
     high_tempobs = session.query(measurement.station, func.count(measurement.tobs)).group_by(measurement.station).order_by(func.count(measurement.tobs).desc()).all()
@@ -96,17 +96,23 @@ def tobs():
 
     return jsonify(yt_obs)
 
-@app.route("/api/v1.0/<start>")
-
-def temps(start=None):
-    # Create our session (link) from Python to the DB
+@app.route('/api/v1.0/<start>')
+def start(start = None):
+    # Create session from Python to DB
     session = Session(engine)
     # Selection
-    start_select = session.query(measurement.date, func.min(measurement.tobs), func.avg(measurement.tobs), func.max(measurement.tobs).filter(measurement.date)).all()
+    start_select = session.query(measurement.date, func.min(measurement.tobs), func.avg(measurement.tobs), func.max(measurement.tobs)).filter(measurement.date >= start).group_by(measurement.date).all()
     start_select = list(start_select)
     return jsonify(start_select)
 
-@app.route("/api/v1.0/<start>/<end>")
+@app.route('/api/v1.0/<start>/<end>')
+def end(start = None, end = None):
+    # Create session from Python to DB
+    session = Session(engine)
+    # Selection
+    end_select = session.query(measurement.date, func.min(measurement.tobs), func.avg(measurement.tobs), func.max(measurement.tobs)).filter(measurement.date >= start, measurement.date <= end).group_by(measurement.date).all()
+    end_select  = list(end_select )
+    return jsonify(end_select)
 
 if __name__ == '__main__':
     app.run(debug=True)
