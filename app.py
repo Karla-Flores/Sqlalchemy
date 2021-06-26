@@ -31,11 +31,11 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     """List all available api routes."""
-    return (f'/api/v1.0/precipitation<br>'
-            f'/api/v1.0/stations<br>'
-            f'/api/v1.0/tobs<br>'
-            f'/api/v1.0/<start><br>'
-            f'/api/v1.0/<start>/<end><br>')
+    return (f'<table><thead><tr><th>/api/v1.0/precipitation<br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/precipitation">Precipitation</a><br></th></table>'
+            f'<table><thead><tr><th>/api/v1.0/stations<br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/stations">Stations</a><br></th></table>'
+            f'<table><thead><tr><th>/api/v1.0/tobs<br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/tobs">Stations</a><br></th></table>'
+            f'<table><thead><tr><th>/api/v1.0/<start><br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/<start>">Start</a><br></th></table>'
+            f'<table><thead><tr><th>/api/v1.0/<start>/<end><br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/<start>/<end>">Start and End</a><br></th></table>')
 
 
 @app.route("/api/v1.0/precipitation")
