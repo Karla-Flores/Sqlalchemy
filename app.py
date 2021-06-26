@@ -37,11 +37,21 @@ def home():
             f'<table><thead><tr><th>/api/v1.0/<start><br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/<start>">Start</a><br></th></table>'
             f'<table><thead><tr><th>/api/v1.0/<start>/<end><br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/<start>/<end>">Start and End</a><br></th></table>')
 
-
 @app.route("/api/v1.0/precipitation")
 def precipitation():
     session = Session(engine)
+    oy_precipitation = session.query(measurement.date,measurement.prcp).filter(measurement.date >= last_year).order_by(measurement.date).all()
     session.close()
+   
+    # Convert list of tuples into normal list
+    precip = []
+    for date, prcp in oy_precipitation:
+        p_dict = {}
+        p_dict["Date"] = date
+        p_dict["Precipitation"] = prcp
+        precip.append(p_dict)
+
+    return jsonify(precip)
 
 if __name__ == '__main__':
     app.run(debug=True)
