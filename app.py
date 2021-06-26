@@ -34,7 +34,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     """List all available api routes."""
-    return (f'/api/v1.0/precipitation <br>'
+    return (f'/api/v1.0/precipitation<br>'
             f'/api/v1.0/stations<br>'
             f'/api/v1.0/tobs<br>'
             f'/api/v1.0/&lt;start&gt;<br>'
@@ -89,7 +89,7 @@ def tobs():
     max_d = datetime.strptime(max_d, '%Y-%m-%d')
     last_year = max_d - timedelta(days=366)
     # Query the last 12 months of temperature observation data for this station
-    t_obs = session.query(measurement.tobs).filter(measurement.station == high_tempobs_station).filter(measurement.date >= last_year).order_by(measurement.date).all()  
+    t_obs = session.query(measurement.date, measurement.tobs).filter(measurement.station == high_tempobs_station).filter(measurement.date >= last_year).order_by(measurement.date).all()  
     session.close()
     # Convert list of tuples into normal list
     yt_obs = list(np.ravel(t_obs))
