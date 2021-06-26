@@ -34,11 +34,11 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     """List all available api routes."""
-    return (f'<table><thead><tr><th>/api/v1.0/precipitation</th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/precipitation">Precipitation</a><br></th></  table>'
-            f'<table><thead><tr><th>/api/v1.0/stations<br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/stations">Stations</a><br></th></table>'
-            f'<table><thead><tr><th>/api/v1.0/tobs<br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/tobs">Temperature Observations</a><br></th></table>'
-            f'<table><thead><tr><th>/api/v1.0/<start><br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/<start>">Start</a><br></th></table>'
-            f'<table><thead><tr><th>/api/v1.0/<start>/<end><br></th><th></th><th><a href="http://127.0.0.1:5000/api/v1.0/<start>/<end>">Start and End</a><br></th></table>')
+    return (f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/precipitation">Precipitation</a><br></th></  table>'
+            f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/stations">Stations</a><br></th></table>'
+            f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/tobs">Temperature Observations</a><br></th></table>'
+            f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/<start>">Start</a><br></th></table>'
+            f'<table><thead><tr><th><a href="http://127.0.0.1:5000/api/v1.0/<start>/<end>">Start and End</a><br></th></table>')
 
 
 # Precipitation
@@ -76,5 +76,24 @@ def stations():
 
     return jsonify(stations)
 
+# Tobs
+@app.route("/api/v1.0/tobs")
+def tobs():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    # Query most active station
+    high_tempobs = session.query(measurement.station, func.count(measurement.tobs)).group_by(measurement.station).order_by(func.count(measurement.tobs).desc()).all()
+    high_tempobs_station = high_tempobs[0][0]
+    # Defining Last year
+    max_d = session.query(measurement.date).order_by(measurement.date.desc()).first()[0]
+    max_d = datetime.strptime(max_d, '%Y-%m-%d')
+    last_year = max_d - timedelta(days=366)
+    # Query the last 12 months of temperature observation data for this station
+    t_obs = session.query(measurement.tobs).filter(measurement.station == high_tempobs_station).filter(measurement.date >= last_year).order_by(measurement.date).all()  
+    session.close()
+    # Convert list of tuples into normal list
+    yt_obs = list(np.ravel(t_obs))
+
+    return jsonify(yt_obs)
 if __name__ == '__main__':
     app.run(debug=True)
