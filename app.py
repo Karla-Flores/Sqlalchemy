@@ -95,5 +95,18 @@ def tobs():
     yt_obs = list(np.ravel(t_obs))
 
     return jsonify(yt_obs)
+
+@app.route("/api/v1.0/<start>")
+
+def temps(start=None):
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    # Selection
+    start_select = session.query(measurement.date, func.min(measurement.tobs), func.avg(measurement.tobs), func.max(measurement.tobs).filter(measurement.date)).all()
+    start_select = list(start_select)
+    return jsonify(start_select)
+
+@app.route("/api/v1.0/<start>/<end>")
+
 if __name__ == '__main__':
     app.run(debug=True)
