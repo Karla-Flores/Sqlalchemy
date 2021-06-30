@@ -58,10 +58,10 @@
 <p align = 'center'><img width="320" alt="Screen Shot 2021-06-29 at 11 10 42 PM" src="https://user-images.githubusercontent.com/77529968/123900736-3de46280-d92f-11eb-89e4-fd176951b285.png"></p>
 
 <h4>Daily Rainfall Average</h4>
-<p align = 'justify'>In this challenge, the first ask was to calculate the precipitation for each weather station and display the results along with station information. After querying the databases for both tables and checking for null values, the query results were saved in Pandas dataframes in order to make it easier to manipulate data by using groupby and merge. The following dataframe is the result:</p>
+<p align = 'justify'>In this challenge, the first task was to calculate the precipitation for each weather station and display the results and station information. After querying the databases for both tables and checking for null values, the query results were saved in Pandas data frames to make it easier to manipulate data using groupby and merge. The next data frame is the result:</p>
 <p align = 'center'><img width="674" alt="Screen Shot 2021-06-29 at 11 11 12 PM" src="https://user-images.githubusercontent.com/77529968/123900772-505e9c00-d92f-11eb-9781-6ddabcd6e95f.png"></p>
 
-<p align = 'justify'>The second part of this challenge involved finding daily normals for each date of our defined trip from 2018-06-01 to 2018-06-15 (using only the month and day to identify historic data with the same dates) and plotting an area plot as below:</p>
+<p align = 'justify'>The second part of this challenge involved finding daily normals for each date of our defined trip from 2017-07-01 to 2017-07-14 (using only the month and day to identify historic data with the same dates) and plotting an area plot as below:</p>
 <p align = 'center'>
 <img width="982" alt="Screen Shot 2021-06-29 at 11 11 50 PM" src="https://user-images.githubusercontent.com/77529968/123900817-64a29900-d92f-11eb-80b1-857ae21236d0.png"></p>
 
