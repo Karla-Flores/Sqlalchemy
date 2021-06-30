@@ -48,8 +48,8 @@
 <hr>
 <h4>Temperature Analysis I</h4>
 <p align = 'justify'>June and December temperature observations were retrieved by converting string dates to DateTime objects to filter queries by month.</p>
-<p align = 'justify'>The average temperature in June at all stations across all available years in the dataset is 74.94 (F). And the average temperature in June at all stations across all available years in the dataset is 71.04 (F). Thus, the mean temperature difference between June and December is a mere 3.9 degrees Fahrenheit, which is not much different.</p>
-<p align = 'justify'> In this analysis, the t-test was paired and showed a low p-value that indicates that the difference is not significant, which means that you can enjoy a temperature over 70 degrees Fahrenheit all year.</p>
+<p align = 'justify'>The average temperature in June at all stations across all available years in the dataset is 74.94 (F). And the average temperature in June at all stations across all available years in the dataset is 71.04 (F). Thus, the mean temperature difference between June and December is a mere 3.9 degrees Fahrenheit.</p>
+<p align = 'justify'>In this analysis, the t-test was paired because the samples do not have any data overlap. The high t-value shows the two sets are very different, while the low p-value shows that the data did not occur by chance.</p>
 <p align = 'justify'> <img width="981" alt="Screen Shot 2021-06-29 at 11 04 16 PM" src="https://user-images.githubusercontent.com/77529968/123900249-5738df00-d92e-11eb-8d86-bfbbc9f63cf4.png"></p>
 
 <h4>Temperature Analysis II</h4>
