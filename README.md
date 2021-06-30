@@ -1,7 +1,6 @@
 <h1>Sqlalchemy--Challenge</h1>
 <hr>
 <h3>Background</h3>
-<hr>
 <br>
 <p>This assignment involved analysing and exploring Hawaii's climate data in 2 steps:</p>
 <ol>
@@ -40,3 +39,11 @@
 <hr>
 <br>
 <p align = 'justify'>This is a web app in the app.py file, created using SQLAlchemy and Flask API. The climate database can be queried for the following to receive information in JSON format:</p>
+<ul>
+  <li>Precipitation (/api/v1.0/precipitation): This route displays every date and temperature observation across all weather stations in Hawaii.</li>
+  <li>Stations (/api/v1.0/stations): This route displays a list of all 9 stations (ID, Station and Name).</li>
+  <li>Temperature Observations (/api/v1.0/tobs): This route displays every date and temperature observation for the most active station in Hawaii (USC00519281)
+    in the last 12 months of data available.</li>
+  <li>Daily Normals from start date (/api/v1.0/start_date): This route allows you to enter a start date in the format 'YYYY-MM-DD' to retrieve daily normals (TMIN, TAVG, TMAX) from that date onward until the end of data available.</li>
+  <li>Daily Normals between start and end date (/api/v1.0/start_date/end_date): This route allows you to enter a start date AND an end date in the format 'YYYY-MM-DD' to retrieve daily normals (TMIN, TAVG, TMAX) for the date range.</li>
+</ul>  
