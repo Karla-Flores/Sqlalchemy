@@ -7,11 +7,9 @@
 <li>Climate Analysis and Exploration</li>
 <li>Climate App</li>
 </ol>
-<br>
 <h3>Climate Analysis and Exploration</h3>
 <hr>
 <p align= 'justify'>Python and SQLAlchemy was used to do basic climate analysis and data exploration of the given climate database. All of the analysis was completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.<p>
-<br>
 <h4>Precipitation Analysis</h4>
 <p align= 'justify'>
 <ul>
@@ -25,7 +23,6 @@
 <p align= 'center'>
 <img width="129" alt="Screen Shot 2021-06-29 at 9 53 48 PM" src="https://user-images.githubusercontent.com/77529968/123894836-7df21800-d924-11eb-9fd6-2b8531958523.png"></p>
 </p>
-<br>
 <h4>Station Analysis</h4>
 <p align = 'justify'>This section asked to find the number of stations (nine) and the most active station (USC00519281).</p>
 <p align = 'justify'>Temperature observations at this station for the last 12 months was plotted as a histogram with the following results:
@@ -40,10 +37,12 @@
 <br>
 <p align = 'justify'>This is a web app in the app.py file, created using SQLAlchemy and Flask API. The climate database can be queried for the following to receive information in JSON format:</p>
 <ul>
-  <li>Precipitation (/api/v1.0/precipitation): This route displays every date and temperature observation across all weather stations in Hawaii.</li>
-  <li>Stations (/api/v1.0/stations): This route displays a list of all 9 stations (ID, Station and Name).</li>
-  <li>Temperature Observations (/api/v1.0/tobs): This route displays every date and temperature observation for the most active station in Hawaii (USC00519281)
-    in the last 12 months of data available.</li>
-  <li>Daily Normals from start date (/api/v1.0/start_date): This route allows you to enter a start date in the format 'YYYY-MM-DD' to retrieve daily normals (TMIN, TAVG, TMAX) from that date onward until the end of data available.</li>
-  <li>Daily Normals between start and end date (/api/v1.0/start_date/end_date): This route allows you to enter a start date AND an end date in the format 'YYYY-MM-DD' to retrieve daily normals (TMIN, TAVG, TMAX) for the date range.</li>
+  <li><b>Precipitation (/api/v1.0/precipitation)</b>: This route displays every date and temperature observation across all weather stations in Hawaii.</li>
+  <li><b>Stations (/api/v1.0/stations)</b>: This route displays a list of all 9 stations (ID, Station and Name).</li>
+  <li><b>Temperature Observations (/api/v1.0/tobs)</b>: This route displays every date and temperature observation for the most active station in Hawaii (USC00519281) in the last 12 months of data available.</li>
+  <li><b>Daily Normals from start date (/api/v1.0/start_date)</b>: This route allows you to enter a start date in the format 'YYYY-MM-DD' to retrieve daily normals (TMIN, TAVG, TMAX) from that date onward until the end of data available.</li>
+  <li><b>Daily Normals between start and end date (/api/v1.0/start_date/end_date)</b>: This route allows you to enter a start date AND an end date in the format 'YYYY-MM-DD' to retrieve daily normals (TMIN, TAVG, TMAX) for the date range.</li>
 </ul>  
+<br>
+<h3>Bonus Challenges</h3>
+<hr>
